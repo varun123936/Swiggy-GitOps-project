@@ -7,11 +7,11 @@ pipeline {
     environment  {
         SCANNER_HOME= tool 'sonar-scanner'                // replace your sonarqube scanner name
         SONARQUBE_SERVER  = 'sonar-server'                // replace your Jenkins global SonarQube server name (Manage Jenkins > Configure System)
-        AWS_ACCOUNT_ID = '884394270268'                   // replace AWS account ID
+        AWS_ACCOUNT_ID = '571162942984'                   // replace AWS account ID
         AWS_ECR_REPO_NAME = 'swiggy'                      //replace ECR repository name
         SONAR_TOKEN_CRED  = 'sonarqube-token'            // Jenkins secret text credential id
         AWS_DEFAULT_REGION = 'us-east-1'                 // replace AWS region
-        REPOSITORY_URI = "884394270268.dkr.ecr.us-east-1.amazonaws.com"        // replace your repository URL
+        REPOSITORY_URI = "571162942984.dkr.ecr.us-east-1.amazonaws.com"        // replace your repository URL
 
     }
     stages {
@@ -155,8 +155,8 @@ pipeline {
             sh 'if [ ! -f dependency-check-report.xml ]; then echo "No dependency check report found" > dependency-check-report.xml; fi'
         }
         emailext(
-            from: 'yaswanth.arumulla@gmail.com',
-            replyTo: 'yaswanth.arumulla@gmail.com',
+            from: 'tejavarun689@gmail.com',
+            replyTo: 'tejavarun689@gmail.com',
             attachLog: true,
             subject: "Build ${currentBuild.result}",
             body: """
@@ -174,7 +174,7 @@ pipeline {
                 </body>
                 </html>
             """,
-            to: 'yaswanth.arumulla@gmail.com',
+            to: 'tejavarun689@gmail.com',
             mimeType: 'text/html',
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt,**/dependency-check-report.xml'
         )
