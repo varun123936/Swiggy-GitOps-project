@@ -2,8 +2,8 @@ provider "aws" {
   region = "us-east-1"  # Change as needed
 }
 
-resource "aws_ecr_repository" "hotstar" {
-  name = "hotstar"
+resource "aws_ecr_repository" "swiggy" {
+  name = "swiggy"
 
   image_scanning_configuration {
     scan_on_push = true
@@ -15,6 +15,6 @@ resource "aws_ecr_repository" "hotstar" {
 
   tags = {
     Environment = "production"
-    Service     = "hotstar"
+    Service     = "swiggy"
   }
 }
