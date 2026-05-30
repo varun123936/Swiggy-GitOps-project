@@ -69,14 +69,15 @@ pipeline {
         }
 
         // this step it will take 45 min
-        stage('OWASP FS Scan') {
-            steps {
-                dir('Swiggy') {   // Ensure you are scanning the right folder
-                    dependencyCheck additionalArguments: '--scan . --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-check'
-                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+       stage('OWASP FS Scan') {
+           steps {
+               dir('Swiggy') {
+                   dependencyCheck additionalArguments: '--scan . --format XML --out dependency-check-report.xml --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-check'
+                   dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                 }
-            }
+            } 
         }
+
 
         stage('Trivy File Scan') {
             steps {
